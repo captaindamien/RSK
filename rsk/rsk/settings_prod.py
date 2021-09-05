@@ -80,11 +80,9 @@ WSGI_APPLICATION = 'rsk.wsgi.application'
 
 DATABASES = {
     'default': {
-        'NAME': 'b230146_rsk',
-        'ENGINE': 'django.db.backends.mysql',
-        'USER': 'u230146_admin',
-        'PASSWORD': 'cp7d4m9h00',
-        'HOST': '185.84.108.9',
+        'NAME': 'rsk',
+        'ENGINE': 'django.db.backends.postgresql',
+        'USER': 'postgres',
     }
 }
 
