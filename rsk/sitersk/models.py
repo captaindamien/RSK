@@ -4,7 +4,7 @@ from django.db import models
 class Parent(models.Model):
     name = models.CharField(
         verbose_name='имя',
-        max_length=100,
+        max_length=150,
         unique=True,
     )
     description = models.TextField(
@@ -23,7 +23,7 @@ class Category(models.Model):
     )
     name = models.CharField(
         verbose_name='имя',
-        max_length=100,
+        max_length=150,
         unique=True,
     )
     description = models.TextField(
@@ -47,7 +47,7 @@ class News(models.Model):
     )
     short_desc = models.CharField(
         verbose_name='краткое описание продукта',
-        max_length=60,
+        max_length=150,
         blank=True,
     )
     description = models.TextField(

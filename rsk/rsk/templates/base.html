@@ -13,7 +13,9 @@
         <div class="content_container">
             <div class="content_1">
                 <a href="{% url 'index' %}"><img src="{% static 'rsk/img/logo.png' %}" alt="logo.gif" class="content_logo"></a><br>
-                <a href="/" class="content_menu">О компании</a><br>
+                {% for m in menu %}
+                    <a href="{% url m.url_name %}" class="content_menu">{{m.name}}</a><br><br>
+                {% endfor %}
             </div>
             <div class="content_2">
                 <img src="{% static 'rsk/img/CAM00274.jpg' %}" alt="photo_album" class="content_img">
@@ -37,6 +39,5 @@
             </div>
         </div>
     </div>
-
 </body>
 </html>

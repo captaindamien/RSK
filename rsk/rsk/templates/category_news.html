@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}ООО "Региональные энергетические системы"{% endblock %}
+{% block content %}
+    {% for n in news %}
+        <p>
+            <a href="{% url 'news' n.pk %}" class="content_a">{{n.name|safe}} {{n.short_desc}}</a>
+        </p>
+        <hr class="content_hr">
+    {% endfor %}
+{% endblock %}
