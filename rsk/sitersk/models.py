@@ -1,10 +1,11 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Parent(models.Model):
     name = models.CharField(
         verbose_name='имя',
-        max_length=100,
+        max_length=150,
         unique=True,
     )
     description = models.TextField(
@@ -23,7 +24,7 @@ class Category(models.Model):
     )
     name = models.CharField(
         verbose_name='имя',
-        max_length=100,
+        max_length=300,
         unique=True,
     )
     description = models.TextField(
@@ -42,23 +43,32 @@ class News(models.Model):
     )
     name = models.CharField(
         verbose_name='имя',
-        max_length=100,
+        max_length=300,
         unique=True,
     )
     short_desc = models.CharField(
         verbose_name='краткое описание продукта',
-        max_length=60,
+        max_length=300,
         blank=True,
     )
     description = models.TextField(
         verbose_name='описание',
         blank=True,
     )
+    files = models.FileField(
+	upload_to='files/',
+	blank=True,
+    )
     created = models.DateTimeField(
-        auto_now_add=True,
+        default=timezone.now,
     )
     updated = models.DateTimeField(
-        auto_now=True,
+	blank=True,
+	null=True,
+    )
+    download_counter = models.IntegerField(
+	blank=True,
+	default=0,
     )
 
     def __str__(self):

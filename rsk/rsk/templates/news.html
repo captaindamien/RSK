@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}ООО "Региональные энергетические системы"{% endblock %}
+{% block content %}
+    <p>
+        <strong>
+            {{news.short_desc|safe}}
+        </strong>
+    </p>
+    <br>
+    <p>{{news.description|safe}}</p>
+    <br>
+    <p style="font-size: 10px; text-align: left;">Опубликовано: {{news.created|date:"d M Y"}}<p>
+{% endblock %}
