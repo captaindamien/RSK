@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Раскрытие информации{% endblock %}
+{% block content %}
+    {% for cat in category %}
+        <p>
+            <a href="{% url 'category_news' cat.pk %}" class="content_menu">{{cat}}</a>
+        </p>
+    {% endfor %}
+{% endblock %}

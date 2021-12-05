@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
-from sitersk.views import index, disclosure, category_news, news
+from sitersk.views import index, disclosure, category_news, news, contacts
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,8 +26,13 @@ urlpatterns = [
     path('disclosure/', disclosure, name="disclosure"),
     path('category_news/<int:pk>/', category_news, name='category_news'),
     path('news/<int:pk>/', news, name='news'),
+    path('contacts/', contacts, name='contacts'),
 
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

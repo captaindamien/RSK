@@ -13,16 +13,22 @@
     <div class="wrapper">
         <div class="content_container">
             <div class="content_1">
-                <a href="{% url 'index' %}"><img src="{% static 'rsk/img/logo.png' %}" alt="logo.gif" class="content_logo"></a><br>
+                <a href="{% url 'index' %}"><img src="{% static 'rsk/img/logo.png' %}" alt="logo.gif" class="content_logo"></a>
                 {% for m in menu %}
-                    <a href="{% url m.url_name %}" class="content_menu">{{m.name}}</a><br><br>
+                    <table>
+                        <tr>
+                            <td>
+                                <a href="{% url m.url_name %}" class="content_menu">{{m.name}}</a>
+                            </td>
+                        </tr>
+                    </table>
                 {% endfor %}
             </div>
             <div class="content_2">
-                <img src="{% static 'rsk/img/CAM00274.jpg' %}" alt="photo_album" class="content_img">
-	    </div>
+                <img src="{% static 'rsk/img/fon.jpg' %}" alt="photo_album" class="content_img">
+	        </div>
             <div class="content_3">
-                <p>{% block content %} {% endblock %}</p>
+                {% block content %}{% endblock %}
             </div>
         </div>
         <div class="footer">
@@ -35,7 +41,7 @@
                     <a href="mailto:main@magrsk.ru" class="mailto">main@magrsk.ru</a>
                 </p>
                 <p class="footer_text footer_info">
-                    <br>
+                <br>
                 </p>
             </div>
         </div>

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Раскрытие информации{% endblock %}
+{% block content %}
+    {% for n in posts %}
+        <p>
+            <a href="{% url 'news' n.pk %}" class="content_a"><span style="color: red;">{{n.name}}</span> {{n.short_desc|truncatewords:15}}</a>
+        </p>
+        <hr class="content_hr">
+    {% endfor %}
+    {% include "pagination.html" with page=posts %} 
+{% endblock %}

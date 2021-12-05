@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 {% block title %}ООО "Региональные энергетические системы"{% endblock %}
 {% block content %}
-    {% if text.description %}
-        {{text.description|safe}}
-    {% else %}
-        {{text}}
-    {% endif %}
+    {{text.description|safe}}
 {% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}ООО "Региональная сетевая компания"{% endblock %}
+<!-- {% block index_image %}
+    <h1 class="index_h1">Сайт компании ООО "Региональная сетевая компания"</h1>
+    <img src="{% static 'rsk/img/fon.jpeg' %}" alt="" class="fon">
+{% endblock %} -->
+{% block content %}
+    <!-- {% for key, value in info.items %}
+        {{key.name}}
+        {% if key.name == "О компании" %}
+            {% for i in news %}
+                {{ i.description|safe }}
+            {% endfor %}
+        {% else %}
+            {% for elem in value %}
+                <a href="{% url 'category_news' elem.pk %}" class="content_menu">{{elem.name}}</a>
+            {% endfor %}
+        {% endif %}
+        <br>
+    {% endfor %} -->
+    {{text.description|safe}}
+{% endblock %}

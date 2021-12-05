@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- static -->
+    <link rel="stylesheet" type="text/css" href="{% static 'rsk/css/styles.css' %}" />
+    <!-- favicon -->
+    <link rel="icon" type="image/ico" sizes="32x32" href="{% static 'rsk/img/fav.ico' %}">
+    <link rel="icon" type="image/ico" sizes="16x16" href="{% static 'rsk/img/fav.ico' %}">
+    <link rel="shortcut icon" href="{% static 'rsk/img/fav.ico' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    {% block index_image %}{% endblock %}
+    <div id="nav_bar">
+        {% for m in menu %}
+            <a href="{% url m.url_name %}" class="header_menu">{{m.name}}</a>
+        {% endfor %}
+    </div>
+    <div class="wrapper">
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+        <hr class="hr-horizontal-gradient">
+        <div class="footer">
+            <a href="#" class="header_menu">Контакты</a>
+            <ul class="list1a">
+                {% for contact in contacts %}
+                    <li>
+                        {{contact.description|safe}}
+                    </li>
+                {% endfor %}
+                <li>
+                    <a href="#">вход для сотрудников</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function() {
+        var currentScrollPos = window.pageYOffset;
+          if (prevScrollpos > currentScrollPos) {
+            document.getElementById("nav_bar").style.top = "0";
+          } else {
+            document.getElementById("nav_bar").style.top = "-70px";
+          }
+          prevScrollpos = currentScrollPos;
+        }
+    </script>
+
+</body>
+</html>

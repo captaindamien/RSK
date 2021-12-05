@@ -1,13 +1,17 @@
-<div style="color: red; text-align: center; position: absolute; bottom: 0px; left: 35%;">
- <span>
-  {% if page.has_previous %}
-      <a href="?page={{ page.previous_page_number }}" class="content_a">пред.</a>
-  {% endif %}
-    <span style="color: red; font-weight: 900;">
-  стр. {{ page.number }} из {{ page.paginator.num_pages }}
-    </span>
-  {% if page.has_next %}
-        <a href="?page={{ page.next_page_number }}" class="content_a">след.</a>
-  {% endif %}
-  </span>
+<div class="pagination">
+    {% if page %}
+        {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}" class="content_a pag_child">пред.</a>
+        {% else %}
+            <a class="content_a pag_child pag_inactive">пред.</a>
+        {% endif %}
+        <span class="pag_text pag_child">
+            стр. {{ page.number }} из {{ page.paginator.num_pages }}
+        </span>
+        {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}" class="content_a pag_child">след.</a>
+        {% else %}
+            <a class="content_a pag_child pag_inactive">след.</a>
+        {% endif %}
+    {% endif %}
 </div>

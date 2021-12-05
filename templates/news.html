@@ -1,13 +1,59 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}ООО "Региональные энергетические системы"{% endblock %}
 {% block content %}
-    <p>
-        <strong>
-            {{news.short_desc|safe}}
-        </strong>
-    </p>
+    <strong>
+        {{ news.short_desc }}
+    </strong>
+    {{ news.description|safe }}
+    <div class="slide">
+        <label for="slide_box" class="slider_label">
+            Файлы для скачивания
+            <img src="{% static 'rsk/img/slider_arrow.png' %}" alt="" class="slider_arrow">
+        </label>
+        <input type="checkbox" id="slide_box"/>
+        <table class="file_table">
+            {% if files %}
+                {% for file in files %}
+                        <th>
+                        {% if file.server_files %}
+                            <tr>
+                                <td>
+                                    <a href="/{{ file.server_files }}" class="content_files">{{ file.name }}</a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                        {% if file.file %}
+                            <tr>
+                                <td>
+                                    <a href="/media/{{ file.file }}" class="content_files">{{ file.name }}</a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                        <!--
+                        <tr>
+                            <td>
+                                <p class="news_p">Скачано: {{ news.download_counter }} раз</p>
+                            </td>
+                        </tr>
+                        </th>
+                        -->
+                {% endfor %}
+            {% else %}
+            <th>
+                <tr>
+                    <td>
+                        <p>Файлы отсутствуют</p>
+                    </td>
+                </tr>
+            </th>
+            {% endif %}
+        </table>
+    </div>
     <br>
-    <p>{{news.description|safe}}</p>
-    <br>
-    <p style="font-size: 10px; text-align: left;">Опубликовано: {{news.created|date:"d M Y"}}<p>
+    {% if news.updated %}
+        <p class="news_p">Обновлено: {{ news.updated|date:"d M Y" }}<p>
+    {% else %}
+        <p class="news_p">Опубликовано: {{ news.created|date:"d M Y" }}<p>
+    {% endif %}
 {% endblock %}

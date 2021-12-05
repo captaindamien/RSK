@@ -1,8 +1,17 @@
 from django import forms
 from django.contrib import admin
 
-from .models import Parent, Category, News
+from .models import Parent, Category, News, UploadFile
 from ckeditor.widgets import CKEditorWidget
+
+
+class ParentAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'pk',
+        'link',
+        'is_avaliable'
+    )
 
 
 class NewsAdminForm(forms.ModelForm):
@@ -11,26 +20,36 @@ class NewsAdminForm(forms.ModelForm):
     class Meta:
         model = News
         fields = '__all__'
+        verbose_name = 'Описание'
 
 
 class NewsAdmin(admin.ModelAdmin):
     form = NewsAdminForm
-    list_display = ('name', 'category', 'created', 'updated')
-#    fields = ['category', 'name', 'short_desc', 'description', 'created', 'updated']
+    list_display = (
+        'name',
+        'pk',
+        'category',
+        'created',
+        'updated'
+    )
+    search_fields = (
+        'name',
+        'category__name',
+    )
 
-#    def file_link(self, obj):
-#	if obj.file:
-#	    return "<a href='%s' download>Download</a>" % (obj.file.url,)
-#	else:
-#	    return "No attachment"
-#    file_link.allow_tags = True
-#    file_link.short_description = 'File Download'
 
+class UploadAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'news',
+    )
 
-class CategoryAdmin(admin.ModelAdmin):
-    form = NewsAdminForm
+    class Meta:
+        model = UploadFile
+        fields = '__all__'
 
 
 admin.site.register(News, NewsAdmin)
-admin.site.register(Parent)
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(Parent, ParentAdmin)
+admin.site.register(Category)
+admin.site.register(UploadFile, UploadAdmin)
